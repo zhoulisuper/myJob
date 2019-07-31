@@ -504,17 +504,17 @@ w3c 标准模型）： box-sizing: content-box 此模式下，元素的宽度计
 
 #### 5.BFC：块级格式化上下文
 
-根元素；
-浮动元素 (float 不为 none 的元素)；
-绝对定位元素 (元素的 position 为 absolute 或 fixed)；
-inline-blocks(元素的 display: inline-block)；
-表格单元格(元素的 display: table-cell，HTML 表格单元格默认属性)；
-overflow 的值不为 visible 的元素；
-弹性盒 flex boxes (元素的 display: flex 或 inline-flex)；
+- 根元素；
+- 浮动元素 (float 不为 none 的元素)；
+- 绝对定位元素 (元素的 position 为 absolute 或 fixed)；
+- inline-blocks(元素的 display: inline-block)；
+- 表格单元格(元素的 display: table-cell，HTML 表格单元格默认属性)；
+- overflow 的值不为 visible 的元素；
+- 弹性盒 flex boxes (元素的 display: flex 或 inline-flex)；
 
 #### 6、图片瀑布流效果
 
-new Image 用法
+#### new Image 用法
 
 创建一个 Image 对象：var a=new Image(); 定义 Image 对象的 src: a.src=”xxx.gif”; 这样做就相当于给浏览器缓存了一张图片。
 
@@ -538,7 +538,7 @@ var img=new Image();
     window.onload=show;
 ```
 
-运行上面的代码后，在不同的浏览器中进行测试，发现 IE 和 FF 是有区别的，在 FF 中，img 对象的加载包含在 body 的加载过程中，既是 img 加载完之后，body 才算是加载完毕，触发 window.onload 事件。在 IE 中，img 对象的加载是不包含在 body 的加载过程之中的，body 加载完毕，window.onload 事件触发时，img 对象可能还未加载结束，img.onload 事件会在 window.onload 之后触发。根据上面的问题，考虑到浏览器的兼容性和网页的加载时间，尽量不要在 Image 对象里放置过多的图片，否则在 FF 下会影响网页的下载速度。当然如果你在 window.onload 之后，执行预加载函数，就不会有 FF 中的问题了。可以通过 Image 对象的 complete 属性来检测图像是否加载完成（每个 Image 对象都有一个 complete 属性，当图像处于装载过程中时，该属性值 false,当发生了 onload、onerror、onabort 中任何一个事件后，则表示图像装载过程结束（不管成没成功），此时 complete 属性为 true）
+运行上面的代码后，在不同的浏览器中进行测试，发现 IE 和 FF 是有区别的，在 FF 中，img 对象的加载包含在 body 的加载过程中，既是 img 加载完之后，body 才算是加载完毕，触发 window.onload 事件。在 IE 中，img 对象的加载是不包含在 body 的加载过程之中的，body 加载完毕，window.onload 事件触发时，img 对象可能还未加载结束，img.onload 事件会在 window.onload 之后触发。根据上面的问题，考虑到浏览器的兼容性和网页的加载时间，尽量不要在 Image 对象里放置过多的图片，否则在 FF 下会影响网页的下载速度。当然如果你在 window.onload 之后，执行预加载函数，就不会有 FF 中的问题了。可以通过 Image 对象的 complete 属性来检测图像是否加载完成(每个 Image 对象都有一个 complete 属性，当图像处于装载过程中时，该属性值 false,当发生了 onload、onerror、onabort 中任何一个事件后，则表示图像装载过程结束（不管成没成功），此时 complete 属性为 true)
 
 #### 7、文本控制
 
@@ -571,10 +571,10 @@ input {
 
 我们都知道如果在 html 中输入多个空白符，默认会被当成一个空白符处理，实际上就是这个属性控制的
 
-normal：合并空白符和换行符；
-nowrap：合并空白符，但不许换行；
-pre：不合并空白符，并且只在有换行符的地方换行；
-pre-wrap：不合并空白符，允许换行符换行和文本自动换行；
+- normal：合并空白符和换行符；
+- nowrap：合并空白符，但不许换行；
+- pre：不合并空白符，并且只在有换行符的地方换行；
+- pre-wrap：不合并空白符，允许换行符换行和文本自动换行；
 
 #### 5) text-align: justify
 
