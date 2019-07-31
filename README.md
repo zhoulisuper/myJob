@@ -192,6 +192,32 @@ addEventListener("resize", setRem)
 
 #### 14.[实现一个节流函数和防抖函数](/throttle_debounce.md)
 
+#### 15、[8 个问题看你是否真的懂 JS-常见代码题](https://juejin.im/post/5d2d146bf265da1b9163c5c9)
+
+#### Object.setPrototypeOf 方法的使用
+
+将一个指定的对象的原型设置为另一个对象或者 null(既对象的[[Prototype]]内部属性).
+
+obj 将被设置原型的对象.
+
+prototype 该对象新的原型(可以是一个对象或者 null).
+
+#### Object.getPrototypeOf()方法
+
+该方法与 Object.setPrototypeOf 方法配套，用于读取一个对象的原型对象。
+
+```
+function Rectangle() {
+  // ...
+}
+
+const rec = new Rectangle();
+
+Object.getPrototypeOf(rec) === Rectangle.prototype
+// true
+
+```
+
 ## 二、[变量提升](https://zhuanlan.zhihu.com/p/28140450)
 
 function： 声明、初始化、赋值一开始就全部完成，所以函数的变量提升优先级更高
@@ -218,32 +244,6 @@ const 声明之后必须马上赋值，否则会报错
 const 简单类型一旦声明就不能再更改，复杂类型(数组、对象等)指针指向的地址不能更改，内部数据可以更改。
 const 一旦声明变量，就必须立即初始化，不能留到以后赋值。
 const 命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。
-
-## 2、[8 个问题看你是否真的懂 JS-常见代码题](https://juejin.im/post/5d2d146bf265da1b9163c5c9)
-
-### Object.setPrototypeOf 方法的使用
-
-将一个指定的对象的原型设置为另一个对象或者 null(既对象的[[Prototype]]内部属性).
-
-obj 将被设置原型的对象.
-
-prototype 该对象新的原型(可以是一个对象或者 null).
-
-### Object.getPrototypeOf()方法
-
-该方法与 Object.setPrototypeOf 方法配套，用于读取一个对象的原型对象。
-
-```
-function Rectangle() {
-  // ...
-}
-
-const rec = new Rectangle();
-
-Object.getPrototypeOf(rec) === Rectangle.prototype
-// true
-
-```
 
 ## 三、[制定自己团队的前端开发规范](https://juejin.im/post/5d300e0fe51d4577407b1dff)
 
@@ -486,30 +486,31 @@ width: 200px;
 
 #### 2.盒模型
 
-> IE 模型： box-sizing: border-box 此模式下，元素的宽度计算为 border+padding+content 的宽度总和。
-> w3c 标准模型）： box-sizing: content-box 此模式下，元素的宽度计算为 content 的宽度。
+IE 模型： box-sizing: border-box 此模式下，元素的宽度计算为 border+padding+content 的宽度总和。
+
+w3c 标准模型）： box-sizing: content-box 此模式下，元素的宽度计算为 content 的宽度。
 
 #### 3.[css 实现垂直居中 --继续收集方法 至少收集 6 种](/middle_center.md)
 
 #### 4.float 属性的特性
 
-> 包裹性：即此时元素 width 会像 height 一样由子元素决定，而不是默认撑满父元素。
->
-> 块状化并格式化上下文：这个就是后面会讲的 BFC 特性。块状是指元素设置 float: left 之后，其 display 的计算值就成了 block。格式化上下文是指会创建一个 BFC，这个后面会讲。
->
-> 没有任何 margin 合并；
->
-> 脱离文档流：float 设计的初衷就是为了“文字环绕”效果，为了让文字环绕图片，就需要具备两个条件。第一是元素高度坍塌，第二是行框盒子不可与浮动元素重叠。而元素高度坍塌就导致元素后面的非浮动块状元素会和其重叠，于是他就像脱离文档流了。
+包裹性：即此时元素 width 会像 height 一样由子元素决定，而不是默认撑满父元素。
+
+块状化并格式化上下文：这个就是后面会讲的 BFC 特性。块状是指元素设置 float: left 之后，其 display 的计算值就成了 block。格式化上下文是指会创建一个 BFC，这个后面会讲。
+
+没有任何 margin 合并；
+
+脱离文档流：float 设计的初衷就是为了“文字环绕”效果，为了让文字环绕图片，就需要具备两个条件。第一是元素高度坍塌，第二是行框盒子不可与浮动元素重叠。而元素高度坍塌就导致元素后面的非浮动块状元素会和其重叠，于是他就像脱离文档流了。
 
 #### 5.BFC：块级格式化上下文
 
-> 根元素；
-> 浮动元素 (float 不为 none 的元素)；
-> 绝对定位元素 (元素的 position 为 absolute 或 fixed)；
-> inline-blocks(元素的 display: inline-block)；
-> 表格单元格(元素的 display: table-cell，HTML 表格单元格默认属性)；
-> overflow 的值不为 visible 的元素；
-> 弹性盒 flex boxes (元素的 display: flex 或 inline-flex)；
+根元素；
+浮动元素 (float 不为 none 的元素)；
+绝对定位元素 (元素的 position 为 absolute 或 fixed)；
+inline-blocks(元素的 display: inline-block)；
+表格单元格(元素的 display: table-cell，HTML 表格单元格默认属性)；
+overflow 的值不为 visible 的元素；
+弹性盒 flex boxes (元素的 display: flex 或 inline-flex)；
 
 #### 6、图片瀑布流效果
 
