@@ -2,13 +2,11 @@
 
 ## 一、[JS 原理题](https://juejin.im/post/5d2ee123e51d4577614761f8)
 
-> ### 笔记
-
-#### [call_apply_bind 手写方法](/call_apply_bind.md)
+#### 1、[call_apply_bind 手写方法](/call_apply_bind.md)
 
 #### 4.instanceof 的原理
 
-> 思路：右边变量的原型存在于左边变量的原型链上
+思路：右边变量的原型存在于左边变量的原型链上
 
 ```
 function instanceOf(left, right) {
@@ -29,21 +27,21 @@ let a=[1]
 a instanceof Array
 ```
 
-> > 在 while 循环中，break，continue，return 有什么区别
-> >
-> > break;直接结束循环，并且跳出到循环后面语句
-> >
-> > continue;继续执行循环体第 1 条指令，跳过 continue 后面的所有语句
-> >
-> > return;结束包含 while 语句的整个函数，跳转到调用者
+在 while 循环中，break，continue，return 有什么区别
+
+break;直接结束循环，并且跳出到循环后面语句
+
+continue;继续执行循环体第 1 条指令，跳过 continue 后面的所有语句
+
+return;结束包含 while 语句的整个函数，跳转到调用者
 
 #### 5.new 本质
 
-> 创建一个新对象且将其隐式原型指向构造函数原型
->
-> 执行构造函数
->
-> 返回该对象
+创建一个新对象且将其隐式原型指向构造函数原型
+
+执行构造函数
+
+返回该对象
 
 ```
 function myNew (fun) {
@@ -68,7 +66,7 @@ let obj = myNew(person)('chen', 18) // {name: "chen", age: 18}
 
 #### 6.Object.create 的基本实现原理
 
-> 思路：将传入的对象作为原型
+思路：将传入的对象作为原型
 
 ```
 function create(obj) {
@@ -82,13 +80,13 @@ function create(obj) {
 
 #### 8.实现浅拷贝
 
-> 1. ...实现
+#### 1) ...实现
 
 ```
 let copy1 = {...{x:1}}
 ```
 
-> 2. Object.assign 实现
+#### 2) Object.assign 实现
 
 ```
 let copy2 = Object.assign({}, {x:1})
@@ -96,7 +94,7 @@ let copy2 = Object.assign({}, {x:1})
 
 #### 9.实现一个基本的深拷贝
 
-> 1. JOSN.stringify()/JSON.parse()
+#### 1) JOSN.stringify()/JSON.parse()
 
 ```
 let obj = {a: 1, b: {x: 3}}
@@ -105,19 +103,19 @@ JSON.parse(JSON.stringify(obj))
 
 > 此方法的弊端
 >
-> > 1、如果 obj 里面有时间对象，则 JSON.stringify 后再 JSON.parse 的结果，时间将只是字符串的形式。而不是时间对象；
-> >
-> > 2、如果 obj 里有 RegExp、Error 对象，则序列化的结果将只得到空对象；
-> >
-> > 3、如果 obj 里有函数，undefined，则序列化的结果会把函数或 undefined 丢失；
-> >
-> > 4、如果 obj 里有 NaN、Infinity 和-Infinity，则序列化的结果会变成 null
-> >
-> > 5、JSON.stringify()只能序列化对象的可枚举的自有属性，例如 如果 obj 中的对象是有构造函数生成的， 则使用 JSON.parse(JSON.stringify(obj))深拷贝后，会丢弃对象的 constructor
-> >
-> > 6、如果对象中存在循环引用的情况也无法正确实现深拷贝；
+> 1、如果 obj 里面有时间对象，则 JSON.stringify 后再 JSON.parse 的结果，时间将只是字符串的形式。而不是时间对象；
+>
+> 2、如果 obj 里有 RegExp、Error 对象，则序列化的结果将只得到空对象；
+>
+> 3、如果 obj 里有函数，undefined，则序列化的结果会把函数或 undefined 丢失；
+>
+> 4、如果 obj 里有 NaN、Infinity 和-Infinity，则序列化的结果会变成 null
+>
+> 5、JSON.stringify()只能序列化对象的可枚举的自有属性，例如 如果 obj 中的对象是有构造函数生成的， 则使用 JSON.parse(JSON.stringify(obj))深拷贝后，会丢弃对象的 constructor
+>
+> 6、如果对象中存在循环引用的情况也无法正确实现深拷贝；
 
-> 2. 递归拷贝
+#### 2) 递归拷贝
 
 ```
 function deepClone(obj) {
@@ -133,10 +131,10 @@ function deepClone(obj) {
 
 #### 10.使用 setTimeout 模拟 setInterval
 
-> 可避免 setInterval 因执行时间导致的间隔执行时间不一致
->
-> > 如果 setInterval 回调函数的执行时间将足够长（比指定的时间间隔长），它们将连续执行并且彼此之间没有时间间隔。
-> > 当 setInterval 回调函数第二次被触发时（此时 setTimeout 函数仍在执行）setInterval 的第一次触发将被抛弃掉。当一个很长的代码块在执行时，可能把所有的 setInterval 回调函数都排在执行队列的后面，代码块执行完之后，结果便会是一大串的 setInterval 回调函数等待执行，并且这些函数之间没有间隔，直到全部完成。所以，浏览器倾向于的当没有更多 interval 的处理函数在排队时再将下一个处理函数排到队尾(这是由于间隔的问题)。
+可避免 setInterval 因执行时间导致的间隔执行时间不一致
+
+> 如果 setInterval 回调函数的执行时间将足够长（比指定的时间间隔长），它们将连续执行并且彼此之间没有时间间隔。
+> 当 setInterval 回调函数第二次被触发时（此时 setTimeout 函数仍在执行）setInterval 的第一次触发将被抛弃掉。当一个很长的代码块在执行时，可能把所有的 setInterval 回调函数都排在执行队列的后面，代码块执行完之后，结果便会是一大串的 setInterval 回调函数等待执行，并且这些函数之间没有间隔，直到全部完成。所以，浏览器倾向于的当没有更多 interval 的处理函数在排队时再将下一个处理函数排到队尾(这是由于间隔的问题)。
 
 ```
 setTimeout (function () {
@@ -189,52 +187,46 @@ addEventListener("resize", setRem)
 
 #### 14.[实现一个节流函数和防抖函数](/throttle_debounce.md)
 
----
-
 ## 二、[变量提升](https://zhuanlan.zhihu.com/p/28140450)
 
-### 笔记
+function： 声明、初始化、赋值一开始就全部完成，所以函数的变量提升优先级更高
 
-> function： 声明、初始化、赋值一开始就全部完成，所以函数的变量提升优先级更高
+var、let、const 的区别
 
-> var、let、const 的区别
->
-> > （一）var
-> >
-> > var 命令会发生“变量提升”现象，即变量可以在声明之前使用，值为 undefined 。
-> > 内层变量可能覆盖外层变量
-> > 用来计数的循环变量泄露为全局变量
-> >
-> > （二）let
-> >
-> > 声明的全局变量不会挂在顶层对象下面
-> > 所声明的变量一定要在声明后使用，否则报错，报错 ReferenceError
-> > 暂时性死区，只要块级作用域内存在 let 命令，它所声明的变量就“绑定”（ binding ）这个区域，不再受外部的影响，在代码块内，使用 let 命令声明变量之前，该变量都是不可用的。
-> > 不允许重复声明
-> >
-> > （三）const
-> >
-> > 声明的全局变量不会挂在顶层对象下面
-> > const 声明之后必须马上赋值，否则会报错
-> > const 简单类型一旦声明就不能再更改，复杂类型(数组、对象等)指针指向的地址不能更改，内部数据可以更改。
-> > const 一旦声明变量，就必须立即初始化，不能留到以后赋值。
-> > const 命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。
+#### 1) var
+
+var 命令会发生“变量提升”现象，即变量可以在声明之前使用，值为 undefined 。
+内层变量可能覆盖外层变量
+用来计数的循环变量泄露为全局变量
+
+#### 2) let
+
+声明的全局变量不会挂在顶层对象下面
+所声明的变量一定要在声明后使用，否则报错，报错 ReferenceError
+暂时性死区，只要块级作用域内存在 let 命令，它所声明的变量就“绑定”（ binding ）这个区域，不再受外部的影响，在代码块内，使用 let 命令声明变量之前，该变量都是不可用的。
+不允许重复声明
+
+#### 3) const
+
+声明的全局变量不会挂在顶层对象下面
+const 声明之后必须马上赋值，否则会报错
+const 简单类型一旦声明就不能再更改，复杂类型(数组、对象等)指针指向的地址不能更改，内部数据可以更改。
+const 一旦声明变量，就必须立即初始化，不能留到以后赋值。
+const 命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。
 
 ## 2、[8 个问题看你是否真的懂 JS-常见代码题](https://juejin.im/post/5d2d146bf265da1b9163c5c9)
 
-### 笔记
+### Object.setPrototypeOf 方法的使用
 
-> Object.setPrototypeOf 方法的使用
->
-> 将一个指定的对象的原型设置为另一个对象或者 null(既对象的[[Prototype]]内部属性).
->
-> obj 将被设置原型的对象.
->
-> prototype 该对象新的原型(可以是一个对象或者 null).
+将一个指定的对象的原型设置为另一个对象或者 null(既对象的[[Prototype]]内部属性).
 
-> Object.getPrototypeOf()方法
->
-> 该方法与 Object.setPrototypeOf 方法配套，用于读取一个对象的原型对象。
+obj 将被设置原型的对象.
+
+prototype 该对象新的原型(可以是一个对象或者 null).
+
+### Object.getPrototypeOf()方法
+
+该方法与 Object.setPrototypeOf 方法配套，用于读取一个对象的原型对象。
 
 ```
 function Rectangle() {
@@ -248,13 +240,9 @@ Object.getPrototypeOf(rec) === Rectangle.prototype
 
 ```
 
----
-
 ## 三、[制定自己团队的前端开发规范](https://juejin.im/post/5d300e0fe51d4577407b1dff)
 
 ## 四、[前端 100 问-面试题](https://juejin.im/post/5d23e750f265da1b855c7bbe)
-
-### 笔记
 
 #### 1.['1', '2', '3'].map(parseInt) what & why ?
 
@@ -474,8 +462,6 @@ sleepGenerator(1000).next().value.then(()=>{console.log(1)})
 
 ## 五、[css 世界解读](https://juejin.im/post/5ce607a7e51d454f6f16eb3d) 、 [css 的妙用--你未必知道的 49 个 CSS 知识点](https://juejin.im/post/5d3eca78e51d4561cb5dde12)
 
-> ### 笔记
-
 #### 1.在 css 中，!important 的权重相当的高，但是由于宽高会被 max-width/min-width 覆盖，所以!important 会失效。
 
 ```
@@ -496,7 +482,7 @@ width: 200px;
 
 #### 3.[css 实现垂直居中 --继续收集方法 至少收集 6 种](/middle_center.md)
 
-### 4.float 属性的特性
+#### 4.float 属性的特性
 
 > 包裹性：即此时元素 width 会像 height 一样由子元素决定，而不是默认撑满父元素。
 >
@@ -506,7 +492,7 @@ width: 200px;
 >
 > 脱离文档流：float 设计的初衷就是为了“文字环绕”效果，为了让文字环绕图片，就需要具备两个条件。第一是元素高度坍塌，第二是行框盒子不可与浮动元素重叠。而元素高度坍塌就导致元素后面的非浮动块状元素会和其重叠，于是他就像脱离文档流了。
 
-### 5.BFC：块级格式化上下文
+#### 5.BFC：块级格式化上下文
 
 > 根元素；
 > 浮动元素 (float 不为 none 的元素)；
@@ -516,7 +502,7 @@ width: 200px;
 > overflow 的值不为 visible 的元素；
 > 弹性盒 flex boxes (元素的 display: flex 或 inline-flex)；
 
-### 6、图片瀑布流效果
+#### 6、图片瀑布流效果
 
 new Image 用法
 
@@ -544,7 +530,7 @@ var img=new Image();
 
 运行上面的代码后，在不同的浏览器中进行测试，发现 IE 和 FF 是有区别的，在 FF 中，img 对象的加载包含在 body 的加载过程中，既是 img 加载完之后，body 才算是加载完毕，触发 window.onload 事件。在 IE 中，img 对象的加载是不包含在 body 的加载过程之中的，body 加载完毕，window.onload 事件触发时，img 对象可能还未加载结束，img.onload 事件会在 window.onload 之后触发。根据上面的问题，考虑到浏览器的兼容性和网页的加载时间，尽量不要在 Image 对象里放置过多的图片，否则在 FF 下会影响网页的下载速度。当然如果你在 window.onload 之后，执行预加载函数，就不会有 FF 中的问题了。可以通过 Image 对象的 complete 属性来检测图像是否加载完成（每个 Image 对象都有一个 complete 属性，当图像处于装载过程中时，该属性值 false,当发生了 onload、onerror、onabort 中任何一个事件后，则表示图像装载过程结束（不管成没成功），此时 complete 属性为 true）
 
-### 7、文本控制
+#### 7、文本控制
 
 #### 1) ::first-letter 应用实例
 
@@ -584,7 +570,7 @@ pre-wrap：不合并空白符，允许换行符换行和文本自动换行；
 
 text-align: justify 为两端对齐。除了实现文字的两端对齐，还能用来做一些两端对齐的布局。
 
-### 8、position 的值
+#### 8、position 的值
 
 > absolute
 
@@ -624,8 +610,6 @@ text-align: justify 为两端对齐。除了实现文字的两端对齐，还能
 
 ## 八、[高级前端进阶](https://github.com/yygmind/blog)--大量前端技术点
 
-### 笔记
-
 ### 1、[高阶函数](/higher_order.md)
 
 高阶函数英文叫 Higher-order function，它的定义很简单，就是至少满足下列一个条件的函数：
@@ -641,8 +625,6 @@ text-align: justify 为两端对齐。除了实现文字的两端对齐，还能
 #### [笔记][/currying.md]
 
 ## 九、[一名【合格】前端工程师的自检清单](/web_skills.md)
-
-### 笔记
 
 ### 1.[this 的几种使用场景](/this.md)
 
