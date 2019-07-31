@@ -27,7 +27,7 @@ let a=[1]
 a instanceof Array
 ```
 
-在 while 循环中，break，continue，return 有什么区别
+#### 在 while 循环中，break，continue，return 有什么区别
 
 break;直接结束循环，并且跳出到循环后面语句
 
@@ -37,11 +37,13 @@ return;结束包含 while 语句的整个函数，跳转到调用者
 
 #### 5.new 本质
 
-创建一个新对象且将其隐式原型指向构造函数原型
+步骤：
 
-执行构造函数
+- 创建一个新对象且将其隐式原型指向构造函数原型
 
-返回该对象
+- 执行构造函数
+
+- 返回该对象
 
 ```
 function myNew (fun) {
@@ -133,7 +135,10 @@ function deepClone(obj) {
 
 可避免 setInterval 因执行时间导致的间隔执行时间不一致
 
+> setInterval 执行时间问题
+>
 > 如果 setInterval 回调函数的执行时间将足够长（比指定的时间间隔长），它们将连续执行并且彼此之间没有时间间隔。
+>
 > 当 setInterval 回调函数第二次被触发时（此时 setTimeout 函数仍在执行）setInterval 的第一次触发将被抛弃掉。当一个很长的代码块在执行时，可能把所有的 setInterval 回调函数都排在执行队列的后面，代码块执行完之后，结果便会是一大串的 setInterval 回调函数等待执行，并且这些函数之间没有间隔，直到全部完成。所以，浏览器倾向于的当没有更多 interval 的处理函数在排队时再将下一个处理函数排到队尾(这是由于间隔的问题)。
 
 ```
@@ -246,13 +251,13 @@ Object.getPrototypeOf(rec) === Rectangle.prototype
 
 #### 1.['1', '2', '3'].map(parseInt) what & why ?
 
-```
-map中这个callback一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。
+map 中这个 callback 一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。
 
-而parseInt则是用来解析字符串的，使字符串成为指定基数的整数。
+而 parseInt 则是用来解析字符串的，使字符串成为指定基数的整数。
 parseInt(string, radix)
 接收两个参数，第一个表示被处理的值（字符串），第二个表示为解析时的基数。
 
+```
 ['1', '2', '3'].map(parseInt)等同于
 ['1', '2', '3'].map((a,b,c)=>{return parseInt(a,b)})
 结果为：[1, NaN, NaN]
@@ -260,23 +265,27 @@ parseInt(string, radix)
 
 #### 2.es6 中 class 与 es5 中对象有什么却别
 
-> class 声明会提升，但不会初始化赋值。Foo 进入暂时性死区，类似于 let、const 声明变量。
->
-> class 声明内部会启用严格模式。
->
-> class 的所有方法（包括静态方法和实例方法）都是不可枚举的。
->
-> class 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有[construct]，不能使用 new 来调用。
->
-> 必须使用 new 调用 class
->
-> class 内部无法重写类名。
+class 声明会提升，但不会初始化赋值。Foo 进入暂时性死区，类似于 let、const 声明变量。
+
+class 声明内部会启用严格模式。
+
+class 的所有方法（包括静态方法和实例方法）都是不可枚举的。
+
+class 的所有方法（包括静态方法和实例方法）都没有原型对象 prototype，所以也没有[construct]，不能使用 new 来调用。
+
+必须使用 new 调用 class
+
+class 内部无法重写类名。
 
 #### 3.setTimeout、Promise、Async/Await 的区别
 
-> 我觉得这题主要是考察这三者在事件循环中的区别，事件循环中分为宏任务队列和微任务队列。
-> 其中 settimeout 的回调函数放到宏任务队列里，等到执行栈清空以后执行；
-> promise.then 里的回调函数会放到相应宏任务的微任务队列里，等宏任务里面的同步代码执行完再执行；async 函数表示函数里面可能会有异步方法，await 后面跟一个表达式，async 方法执行时，遇到 await 会立即执行表达式，然后把表达式后面的代码放到微任务队列里，让出执行栈让同步代码先执行。
+主要是考察这三者在事件循环中的区别，事件循环中分为宏任务队列和微任务队列。
+
+其中 settimeout 的回调函数放到宏任务队列里，等到执行栈清空以后执行；
+
+promise.then 里的回调函数会放到相应宏任务的微任务队列里，等宏任务里面的同步代码执行完再执行；
+
+async 函数表示函数里面可能会有异步方法，await 后面跟一个表达式，async 方法执行时，遇到 await 会立即执行表达式，然后把表达式后面的代码放到微任务队列里，让出执行栈让同步代码先执行。
 
 #### 4.数据扁平化
 
@@ -308,17 +317,17 @@ console.log(result)
 
 #### 5.[React 中 setState 什么时候是同步的，什么时候是异步的？](https://github.com/sisterAn/blog)
 
-> 在 React 中，如果是由 React 引发的事件处理（比如通过 onClick 引发的事件处理），调用 setState 不会同步更新 this.state，除此之外的 setState 调用会同步执行 this.state。所谓“除此之外”，指的是绕过 React 通过 addEventListener 直接添加的事件处理函数，还有通过 setTimeout/setInterval 产生的异步调用。
->
-> 原因：在 React 的 setState 函数实现中，会根据一个变量 isBatchingUpdates 判断是直接更新 this.state 还是放到队列中回头再说，而 isBatchingUpdates 默认是 false，也就表示 setState 会同步更新 this.state，但是，有一个函数 batchedUpdates，这个函数会把 isBatchingUpdates 修改为 true，而当 React 在调用事件处理函数之前就会调用这个 batchedUpdates，造成的后果，就是由 React 控制的事件处理过程 setState 不会同步更新 this.state。
+在 React 中，如果是由 React 引发的事件处理（比如通过 onClick 引发的事件处理），调用 setState 不会同步更新 this.state，除此之外的 setState 调用会同步执行 this.state。所谓“除此之外”，指的是绕过 React 通过 addEventListener 直接添加的事件处理函数，还有通过 setTimeout/setInterval 产生的异步调用。
+
+原因：在 React 的 setState 函数实现中，会根据一个变量 isBatchingUpdates 判断是直接更新 this.state 还是放到队列中回头再说，而 isBatchingUpdates 默认是 false，也就表示 setState 会同步更新 this.state，但是，有一个函数 batchedUpdates，这个函数会把 isBatchingUpdates 修改为 true，而当 React 在调用事件处理函数之前就会调用这个 batchedUpdates，造成的后果，就是由 React 控制的事件处理过程 setState 不会同步更新 this.state。
 
 #### 6.有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣 Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()
 
 ##### 1) Object.prototype.toString.call()
 
-> 每一个继承 Object 的对象都有 toString 方法，如果 toString 方法没有重写的话，会返回 [Object type]，其中 type 为对象的类型。但当除了 Object 类型的对象外，其他类型直接使用 toString 方法时，会直接返回都是内容的字符串，所以我们需要使用 call 或者 apply 方法来改变 toString 方法的执行上下文
->
-> 这种方法对于所有基本的数据类型都能进行判断，即使是 null 和 undefined 。
+每一个继承 Object 的对象都有 toString 方法，如果 toString 方法没有重写的话，会返回 [Object type]，其中 type 为对象的类型。但当除了 Object 类型的对象外，其他类型直接使用 toString 方法时，会直接返回都是内容的字符串，所以我们需要使用 call 或者 apply 方法来改变 toString 方法的执行上下文
+
+这种方法对于所有基本的数据类型都能进行判断，即使是 null 和 undefined 。
 
 ```
 Object.prototype.toString.call('An') // "[object String]"
@@ -332,15 +341,15 @@ Object.prototype.toString.call({name: 'An'}) // "[object Object]"
 
 ##### 2) instanceof
 
-> instanceof 的内部机制是通过判断对象的原型链中是不是能找到类型的 prototype。
->
-> 使用 instanceof 判断一个对象是否为数组，instanceof 会判断这个对象的原型链上是否会找到对应的 Array 的原型，找到返回 true，否则返回 false。
+instanceof 的内部机制是通过判断对象的原型链中是不是能找到类型的 prototype。
+
+使用 instanceof 判断一个对象是否为数组，instanceof 会判断这个对象的原型链上是否会找到对应的 Array 的原型，找到返回 true，否则返回 false。
 
 ```
 []  instanceof Array; // true
 ```
 
-> 但 instanceof 只能用来判断对象类型，原始类型不可以。并且所有对象类型 instanceof Object 都是 true。
+但 instanceof 只能用来判断对象类型，原始类型不可以。并且所有对象类型 instanceof Object 都是 true。
 
 ```
 []  instanceof Object; // true
@@ -348,9 +357,9 @@ Object.prototype.toString.call({name: 'An'}) // "[object Object]"
 
 ##### 3) Array.isArray()
 
-> 功能：用来判断对象是否为数组
->
-> instanceof 与 isArray
+功能：用来判断对象是否为数组
+
+#### instanceof 与 isArray
 
 ```
 当检测Array实例时，Array.isArray 优于 instanceof ，因为 Array.isArray 可以检测出 iframes
@@ -367,7 +376,7 @@ Object.prototype.toString.call(arr); // true
 arr instanceof Array; // false
 ```
 
-> Array.isArray() 与 Object.prototype.toString.call()
+#### Array.isArray() 与 Object.prototype.toString.call()
 
 ```
 Array.isArray()是ES5新增的方法，当不存在 Array.isArray() ，可以用 Object.prototype.toString.call() 实现。
@@ -419,7 +428,7 @@ if( a == 1 && a == 2 && a == 3 ) {
 
 ### 9.实现一个 sleep 函数，比如 sleep(1000) 意味着等待 1000 毫秒，可从 Promise、Generator、Async/Await 等角度实现
 
-> promise
+#### promise
 
 ```
 const sleep = (time) => {
@@ -431,7 +440,7 @@ sleep(1000).then(() => {
 })
 ```
 
-> Async/Await
+#### Async/Await
 
 ```
 const sleep = (time) => {
@@ -447,7 +456,7 @@ async function sleepAsync() {
 sleepAsync()
 ```
 
-> Generator
+#### Generator
 
 ```
 function* sleepGenerator(time) {
@@ -572,33 +581,33 @@ text-align: justify 为两端对齐。除了实现文字的两端对齐，还能
 
 #### 8、position 的值
 
-> absolute
+#### absolute
 
 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。
 
 元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
 
-> fixed
+#### fixed
 
 生成绝对定位的元素，相对于浏览器窗口进行定位。
 
 元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
 
-> relative
+#### relative
 
 生成相对定位的元素，相对于其正常位置进行定位。
 
 因此，"left:20" 会向元素的 LEFT 位置添加 20 像素。
 
-> static 默认值。
+#### static 默认值。
 
 没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。
 
-> inherit
+#### inherit
 
 规定应该从父元素继承 position 属性的值
 
-> **sticky**
+#### **sticky**
 
 粘性定位要起作用，需要设置最后滞留位置。chrome 有 bug，firefox 完美
 
