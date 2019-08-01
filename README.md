@@ -467,7 +467,7 @@ function* sleepGenerator(time) {
 sleepGenerator(1000).next().value.then(()=>{console.log(1)})
 ```
 
-### 10.EventBus 代码实现(eventBus.md)
+### 10.[EventBus 代码实现](eventBus.md)
 
 ## 五、[css 世界解读](https://juejin.im/post/5ce607a7e51d454f6f16eb3d) 、 [css 的妙用--你未必知道的 49 个 CSS 知识点](https://juejin.im/post/5d3eca78e51d4561cb5dde12)
 
@@ -612,9 +612,7 @@ text-align: justify 为两端对齐。除了实现文字的两端对齐，还能
 
 粘性定位要起作用，需要设置最后滞留位置。chrome 有 bug，firefox 完美
 
-## 六、[前端常用算法](https://juejin.im/post/5d3ea9a4e51d4561f060cd2d#heading-16)
-
-### [笔记](/sort.md)
+## 六、[前端常用算法](https://juejin.im/post/5d3ea9a4e51d4561f060cd2d#heading-16) [笔记](/sort.md)
 
 ## 七、[大型项目前端架构浅谈](https://juejin.im/post/5cea1f705188250640005472)
 
@@ -630,9 +628,7 @@ text-align: justify 为两端对齐。除了实现文字的两端对齐，还能
 
 也就是说高阶函数是对其他函数进行操作的函数，可以将它们作为参数传递，或者是返回它们。 简单来说，高阶函数是一个接收函数作为参数传递或者将函数作为返回值输出的函数。
 
-### 2、[函数柯里化](https://github.com/yygmind/blog/issues/37)
-
-#### [笔记][/currying.md]
+### 2、[函数柯里化](/currying.md)
 
 ## 九、[一名【合格】前端工程师的自检清单](/web_skills.md)
 
@@ -640,7 +636,7 @@ text-align: justify 为两端对齐。除了实现文字的两端对齐，还能
 
 ## 十、[前端面试每日 3+1](https://github.com/haizlin/fe-interview)
 
-## 十一、[webpack 教程](https://juejin.im/user/5ac0e63e6fb9a028cb2dc4c0/posts)--大有收货很详细
+## 十一、[webpack 教程](https://juejin.im/user/5ac0e63e6fb9a028cb2dc4c0/posts)--很详细
 
 [全面的文档](https://juejin.im/post/5d2d336951882543b7223307)
 
@@ -666,9 +662,7 @@ text-align: justify 为两端对齐。除了实现文字的两端对齐，还能
 
 ## 十二、[一次完整的面试过程](https://juejin.im/post/5d282541e51d4577523f2422)
 
-## 十三、[设计模式](https://www.cnblogs.com/imwtr/p/9451129.html)
-
-### [笔记](/design_patterns.md)
+## 十三、[设计模式](https://www.cnblogs.com/imwtr/p/9451129.html) [笔记](/design_patterns.md)
 
 # 十四、笔记
 
@@ -740,11 +734,9 @@ img.addEventListener('error',function(e){
 我们希望的是，能够在全局监听 error 事件，在实际实现之前，先来看一下浏览器中的事件流
 DOM2 级事件规定事件流包含三个阶段：
 
-事件捕获阶段
-
-处于目标阶段
-
-事件冒泡阶段
+- 事件捕获阶段
+- 处于目标阶段
+- 事件冒泡阶段
 
 首先发生的是事件捕获，为截获事件提供了机会。然后是实际的目标接收到的事件。最后一个阶段是冒泡阶段。
 我们上文中的监听图片自身的 error 事件，实际上在事件流中是处于目标阶段。
@@ -824,7 +816,7 @@ if (err) {
 
 ## 4、异步加载 JS 脚本的方式有哪些？
 
-> script 标签中增加 async(html5) 或者 defer(html4) 属性,脚本就会异步加载。
+### script 标签中增加 async(html5) 或者 defer(html4) 属性,脚本就会异步加载。
 
 ```
 <script src="../XXX.js" defer></script>
@@ -840,15 +832,15 @@ defer 和 async 的区别在于：
 
 - 多个 async 脚本不能保证加载顺序
 
-> 动态创建 script 标签
+### 动态创建 script 标签
 
 动态创建的 script ，设置 src 并不会开始下载，而是要添加到文档中，JS 文件才会开始下载。
 
-> XHR 异步加载 JS
+### XHR 异步加载 JS
 
 ## 5、http 协议、https 协议
 
-### 描述网页从输入 url 到渲染的过程
+### 1)描述网页从输入 url 到渲染的过程
 
 1. 首先获取 url 解析出 ip 地址 如果本地 hosts 中有配置优先取出配置 若没有则进行 dns 解析
 2. tcp 三次挥手 建立连接
@@ -857,9 +849,9 @@ defer 和 async 的区别在于：
 5. 浏览器处理资源文件进行渲染
 6. tcp 的四次挥手
 
-### 简述三次握手和四次挥手
+### 2)简述三次握手和四次挥手
 
-> 三次握手
+#### 三次握手
 
 第一次握手：客户端采用 TCP 协议将带有 SYN 标志的数据包发送给服务器，等待服务器的确认。
 
@@ -867,7 +859,7 @@ defer 和 async 的区别在于：
 
 第三次握手：客户端在接收到服务器段的 SYN+ACK 包后，自己会向服务器发送 ACK 包，完成三次握手。那么客户端和服务器正式建立了连接，开始传输数据。
 
-> 四次挥手
+#### 四次挥手
 
 1. 当客户端的数据传输到尾部时，客户端向服务器发送带有 FIN 标志的数据包，使其明白自己准备断开通信了。 TCP 规定，FIN 报文段即使不携带数据，也要消耗一个序号。
 
@@ -878,18 +870,18 @@ defer 和 async 的区别在于：
 
 4. 当客户端收到 FIN 后，担心某些不可控制的因素导致服务器不知道他要断开连接，会发送 ACK 进行确认，同时把自己设置成 TIME_WAIT 状态并启动定时器，在 TCP 的定时器到达后客户端并没有接收到请求，会重新发送；当服务器收到请求后就断开连接；当客户端等待 2MLS（两倍报文最大生存时间）后，没有收到请求重传的请求后，客户端这边就断开连接，整个 TCP 通信就结束了。
 
-> 为什么握手是三次，挥手是四次
+#### 为什么握手是三次，挥手是四次
 
 因为当 Server 端收到 Client 端的 SYN 连接请求报文后，可以直接发送 SYN+ACK 报文。其中 ACK 报文是用来应答的，SYN 报文是用来同步的。
 但是关闭连接时，当 Server 端收到 FIN 报文时，很可能并不会立即关闭 SOCKET，所以只能先回复一个 ACK 报文。
 只有等到我 Server 端所有的报文都发送完了，才能发送 FIN 报文，因此不能一起发送。故需要四步握手。
 
-> 为什么不能进行两次握手链接
+#### 为什么不能进行两次握手链接
 
 如果是两次握手，在第二次结束后，服务器并不能保证客户端已经收到了第二次的请求，如此一来的话，服务器会一直保存着这个通信过程，
 因为 TCP 通信都是要占用端口的，造成了一定的资源浪费。所以，就一定要让客户端来发送 ACK 的确认请求。
 
-### https 的传输过程
+### 3)https 的传输过程
 
 1. 在服务器端存在一个公钥及私钥
 
@@ -903,7 +895,7 @@ defer 和 async 的区别在于：
 
 6. 服务器端接受这个密钥并且以后的服务器端和客户端的数据全部通过这个密钥加密
 
-### https 和 http 的区别
+### 4)https 和 http 的区别
 
 1. https 需要证书。
 
@@ -913,7 +905,7 @@ defer 和 async 的区别在于：
 
 4. http 的连接很简单，无状态；HTTPS 是由 SSL+HTTP 构建的可进行加密传输、身份认证的网络协议，比 http 协议安全。
 
-### [强制缓存和协商缓存 详情](https://juejin.im/post/5c136bd16fb9a049d37efc47)
+### 5)[强制缓存和协商缓存](https://juejin.im/post/5c136bd16fb9a049d37efc47)
 
 强制缓存是我们在第一次请求资源时在 http 响应头设置一个过期时间，在时效内都将直接从浏览器进行获取，
 常见的 http 响应头字段如 Cache-Control 和 Expires
