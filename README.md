@@ -512,6 +512,29 @@ w3c 标准模型）： box-sizing: content-box 此模式下，元素的宽度计
 - overflow 的值不为 visible 的元素；
 - 弹性盒 flex boxes (元素的 display: flex 或 inline-flex)；
 
+#### 什么是 BFC
+
+BFC（Block formatting contexts），是块级格式化上下文，指的是一种上下文环境
+
+#### 如何形成 BFC
+
+根据 W3C 的定义：浮动元素，绝对定位元素，非块级盒子的块级容器（例如 inline-blocks，table-cells，and table-captions），以及 overflow 属性值不是“ visible”（visible 是 overflow 的默认值）的块级盒子（视口除外），这些元素就会为他们的内容创建一个 BFC。
+
+#### BFC 的特点
+
+- 内部的 Box 会在垂直方向，一个接一个地放置。
+- Box 垂直方向的距离由 margin 决定。属于同一个 BFC 的两个相邻 Box 的 margin 会发生重叠
+- 每个元素的 margin box 的左边， 与包含块 border box 的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。
+- BFC 的区域不会与 float box 重叠。
+- BFC 就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
+- 计算 BFC 的高度时，浮动元素也参与计算
+
+#### BFC 的应用
+
+- 清除元素之间的影响（文本环绕）
+- 清除内部浮动元素对父级元素的影响（父元素高度缺失）
+- 创建自适应布局
+
 #### 6、图片瀑布流效果
 
 #### new Image 用法
