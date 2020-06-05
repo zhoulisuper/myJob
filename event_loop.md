@@ -1,6 +1,9 @@
 #### [练习题 1](/EventLoop/demo1.md)
 
-### 事件循环机制![Image text](https://upload-images.jianshu.io/upload_images/6100502-7831389bec37fe52.png?imageMogr2/auto-orient/strip|imageView2/2/w/1024/format/webp)
+### 事件循环机制
+
+- js 是单线程的语言
+  ![Image text](https://upload-images.jianshu.io/upload_images/6100502-7831389bec37fe52.png?imageMogr2/auto-orient/strip|imageView2/2/w/1024/format/webp)
 
 > 同步和异步任务分别进入不同的执行"场所"，同步的进入主线程，异步的进入 Event Table 并注册函数
 
