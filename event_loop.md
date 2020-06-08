@@ -54,7 +54,7 @@ setTimeout(function(){
   console.log('settimeout')
 })
 console.log('script end')
-// 输出顺序：script start->script end->settimeout
+
 ```
 
 - Promise
@@ -73,7 +73,7 @@ setTimeout(function(){
 console.log('settimeout')
 })
 console.log('script end')
-// 输出顺序: script start->promise1->promise1 end->script end->promise2->settimeout
+
 ```
 
 - async/await
@@ -92,6 +92,8 @@ async1();
 console.log('script end')
 ```
 
+// 输出顺序：script start->script end->settimeout
+// 输出顺序: script start->promise1->promise1 end->script end->promise2->settimeout
 // 输出顺序：script start->async1 start->async2->script end->async1 end
 
 > async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了 async 函数体。
